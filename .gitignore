@@ -2,3 +2,4 @@ chromedriver
 quora-request-automation.zip
 .vscode
 test.py
+credentials.json
