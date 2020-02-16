@@ -29,11 +29,14 @@ def send_requests(url="https://www.quora.com/partners", max_wait=10, total_reque
     browser.get(url)
 
     #for login to the user's account
-    email = browser.find_element_by_xpath("//div[@class='form_column']/input[@name='email']")
-    email.send_keys(credentials["email"])
-    pwd = browser.find_element_by_xpath("//div[@class='form_column'][2]/input[@name='password']")
-    pwd.send_keys(credentials["password"])
-    pwd.send_keys(Keys.ENTER)
+    try:
+        email = browser.find_element_by_xpath("//div[@class='form_column']/input[@name='email']")
+        email.send_keys(credentials["email"])
+        pwd = browser.find_element_by_xpath("//div[@class='form_column'][2]/input[@name='password']")
+        pwd.send_keys(credentials["password"])
+        pwd.send_keys(Keys.ENTER)
+    except TimeoutException:
+        exit("Invalid Email or Password")
 
     #fetching all the questions on the page before sending any request for the older questions
     try:
